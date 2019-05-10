@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.client.democlient.order.dao.OrderDaoTemplate">
+    <resultMap id="BaseResultMap" type="com.example.client.democlient.order.OrderEntity.OrderVo">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="order_id" jdbcType="INTEGER" property="orderId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="course_id" jdbcType="INTEGER" property="courseId" />
+        <result column="order_price" jdbcType="DECIMAL" property="orderPrice" />
+        <result column="num" jdbcType="INTEGER" property="num" />
+        <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
+        <result column="status" jdbcType="INTEGER" property="status" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+    id, order_id, user_id, course_id, order_price,num, order_status, status, create_time, update_time
+  </sql>
+
+    <insert id="createOrder" parameterType="com.example.client.democlient.order.OrderEntity.OrderVo">
+    insert into orders (<include refid="Base_Column_List" />)
+    values (#{id}, #{orderId}, #{userId},
+      #{courseId}, #{orderPrice}, #{num},#{orderStatus},1,
+      #{createTime}, #{updateTime})
+  </insert>
+
+</mapper>
